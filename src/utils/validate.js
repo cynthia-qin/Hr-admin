@@ -9,7 +9,7 @@
 export function isExternal (path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
-
+// 校验手机号
 export const validMobile = (mobile) => {
   const reg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/
   return reg.test(mobile)

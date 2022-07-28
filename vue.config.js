@@ -40,6 +40,7 @@ module.exports = {
     proxy: {
       '/abc': {
         target: 'http://ihrm.itheima.net/',
+        // target: 'http://ihrm-java.itheima.net/',
         changeOrigin: true, // 开启跨域
         pathRewrite: {
           // 相当于replace

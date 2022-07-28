@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function login (data) {
   return request({
     url: '/sys/login',
     method: 'post',
@@ -8,17 +8,21 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo () {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    url: '/sys/profile',
+    method: 'POST'
   })
 }
 
-export function logout() {
+export function getUserDetailById (id) {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    url: `/sys/user/${id}`
+  })
+}
+
+export const getSimpleList = () => {
+  return request({
+    url: '/sys/user/simple'
   })
 }

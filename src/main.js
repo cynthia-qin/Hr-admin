@@ -5,7 +5,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 国际化 多语言 是个语言包
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
 
@@ -16,23 +16,31 @@ import router from './router'
 import '@/icons' // icon svg图标
 import '@/permission' // permission control
 
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
-// if (process.env.NODE_ENV === 'production') {
-//   const { mockXHR } = require('../mock')
-//   mockXHR()
-// }
+import * as directives from '@/directives'
+Object.keys(directives).forEach(key => {
+  Vue.directive(key, directives[key])
+})
+// 注册全局插件
+import components from '@/components'
+Vue.use(components)
+// 注册全局过滤器
+// import dayJs from 'dayjs'
+// Vue.filter('dateFormat', (time) => {
+//   return dayJs(time).format('YYYY-MM-DD')
+// })
+// 批量注册filters
+import * as filters from '@/filters'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
+// 注册打印的插件
+import Print from 'vue-print-nb'
+Vue.use(Print)
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale }) // 国际化
+// Vue.use(ElementUI, { locale }) // 国际化
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 // 控制台生产环境提示 false 表示禁用提示
 Vue.config.productionTip = false
 
